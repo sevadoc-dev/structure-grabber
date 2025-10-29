@@ -3,6 +3,7 @@ import MobileHero from "@/components/MobileHero";
 import EarningsCard from "@/components/EarningsCard";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import AboutSection from "@/components/AboutSection";
+import ProfitCalculator from "@/components/ProfitCalculator";
 import EnergyDeliverSection from "@/components/EnergyDeliverSection";
 import FAQSection from "@/components/FAQSection";
 import heroEnergy from "@/assets/hero-energy.jpg";
@@ -27,6 +28,7 @@ const Index = () => {
         <EarningsCard />
         <HowItWorksSection />
         <AboutSection />
+        <ProfitCalculator />
         <EnergyDeliverSection />
         <FAQSection />
         
