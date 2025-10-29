@@ -26,27 +26,27 @@ const features = [
 
 const HowItWorksSection = () => {
   return (
-    <section className="py-12 px-4">
-      <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 p-6">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-white text-center">
+    <section className="py-6 px-4">
+      <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 p-4">
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 text-white text-center">
           How it works
         </h2>
         
-        <div className="space-y-4 mb-8">
+        <div className="space-y-3 mb-6">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <div 
                 key={index} 
-                className="flex gap-4 p-4 bg-slate-800/50 rounded-lg border border-slate-700"
+                className="flex gap-3 p-3 bg-slate-800/50 rounded-lg border border-slate-700"
               >
                 <div className="flex-shrink-0">
-                  <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                    <Icon className="h-5 w-5 text-white" />
+                  <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                    <Icon className="h-4 w-4 text-white" />
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-1 text-white">{feature.title}</h3>
+                  <h3 className="text-base font-semibold mb-1 text-white">{feature.title}</h3>
                   <p className="text-slate-300 text-sm">{feature.description}</p>
                 </div>
               </div>
@@ -54,11 +54,11 @@ const HowItWorksSection = () => {
           })}
         </div>
         
-        <div className="text-center pt-6 border-t border-slate-700">
-          <p className="text-primary text-xl font-bold mb-2">
+        <div className="text-center pt-4 border-t border-slate-700">
+          <p className="text-primary text-lg font-bold mb-1">
             Average Return
           </p>
-          <p className="text-white text-2xl font-bold">
+          <p className="text-white text-xl font-bold">
             from €3,000 to €5,000 per month
           </p>
         </div>

@@ -3,18 +3,18 @@ import { Shield } from "lucide-react";
 
 const EnergyDeliverSection = () => {
   return (
-    <section className="py-12 px-4">
-      <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 p-6">
-        <div className="flex items-center gap-3 mb-4">
+    <section className="py-6 px-4">
+      <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 p-4">
+        <div className="flex flex-col items-center text-center gap-2 mb-4">
           <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
             <Shield className="h-5 w-5 text-white" />
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-white">
+          <h2 className="text-xl sm:text-2xl font-bold text-white">
             Security and Regulation
           </h2>
         </div>
         
-        <div className="space-y-4 text-slate-300">
+        <div className="space-y-3 text-slate-300 text-sm">
           <p>
             Ørsted AI operates exclusively through licensed European brokers that comply with MiFID II and other recognized EU financial regulations. This ensures that every trading operation within the system is carried out through institutions monitored by official regulatory authorities — providing users with complete transparency and legal protection.
           </p>

@@ -31,8 +31,8 @@ const Index = () => {
         <FAQSection />
         
         {/* Footer */}
-        <footer className="py-8 px-4 text-center">
-          <p className="text-slate-400 text-sm">
+        <footer className="py-6 px-4 text-center">
+          <p className="text-slate-400 text-xs">
             © 2025 Ørsted AI. All rights reserved.
           </p>
         </footer>

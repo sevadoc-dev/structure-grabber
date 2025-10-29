@@ -64,14 +64,14 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-12 px-4">
-      <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 p-6">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-white text-center">
+    <section className="py-6 px-4">
+      <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 p-4">
+        <h2 className="text-xl sm:text-2xl font-bold mb-1 text-white text-center">
           FAQ
         </h2>
-        <p className="text-slate-400 text-center mb-6">Frequently Asked Questions</p>
+        <p className="text-slate-400 text-center text-sm mb-4">Frequently Asked Questions</p>
         
-        <div className="space-y-4">
+        <div className="space-y-3">
           {faqs.map((faq, index) => (
             <Collapsible
               key={index}
@@ -79,8 +79,8 @@ const FAQSection = () => {
               onOpenChange={() => toggleItem(index)}
             >
               <CollapsibleTrigger className="w-full">
-                <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-lg border border-slate-700 hover:bg-slate-800 transition-colors">
-                  <h3 className="text-lg font-semibold text-white text-left">
+                <div className="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg border border-slate-700 hover:bg-slate-800 transition-colors">
+                  <h3 className="text-base font-semibold text-white text-left pr-2">
                     {faq.question}
                   </h3>
                   <ChevronDown
@@ -91,7 +91,7 @@ const FAQSection = () => {
                 </div>
               </CollapsibleTrigger>
               <CollapsibleContent className="mt-2">
-                <div className="p-4 bg-slate-900/50 rounded-lg border border-slate-700 text-slate-300 text-sm">
+                <div className="p-3 bg-slate-900/50 rounded-lg border border-slate-700 text-slate-300 text-sm">
                   {faq.answer}
                 </div>
               </CollapsibleContent>
