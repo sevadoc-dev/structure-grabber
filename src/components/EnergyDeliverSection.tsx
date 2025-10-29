@@ -10,21 +10,25 @@ const EnergyDeliverSection = () => {
             <Shield className="h-5 w-5 text-white" />
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-white">
-            Compliance & Security
+            Security and Regulation
           </h2>
         </div>
         
         <div className="space-y-4 text-slate-300">
           <p>
-            Ørsted AI operates in cooperation with brokers licensed under MiFID II and other recognised European financial frameworks. This means that all market activity within the system is executed through institutions supervised by official regulatory bodies.
+            Ørsted AI operates exclusively through licensed European brokers that comply with MiFID II and other recognized EU financial regulations. This ensures that every trading operation within the system is carried out through institutions monitored by official regulatory authorities — providing users with complete transparency and legal protection.
           </p>
           
           <p>
-            Every transaction passes through 256-bit SSL encryption, the same security level used by international banking networks. User data is stored exclusively on protected European servers that meet GDPR and ISO/IEC 27001 standards.
+            All transactions within the platform are protected by 256-bit SSL encryption, the same security level used in international banking networks. User data is stored solely on secure European servers that fully comply with GDPR and ISO/IEC 27001 standards, guaranteeing the confidentiality and integrity of your information.
           </p>
           
           <p>
-            The platform's operations undergo regular independent compliance audits, and broker certificates are accessible for review inside your personal account. Access to the trading account and automatic earnings using the platform costs only 300 euro and gives you unlimited use of the system.
+            Ørsted AI undergoes regular independent compliance audits, confirming that its operations meet the strictest requirements of the European financial sector. Broker licenses and certificates are always available for review inside your personal account.
+          </p>
+          
+          <p>
+            Access to your trading account and the automated profit system requires a one-time activation of €300, which unlocks full and unlimited use of the Ørsted AI platform.
           </p>
         </div>
       </Card>
