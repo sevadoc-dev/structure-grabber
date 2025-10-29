@@ -9,7 +9,7 @@ const EarningsCard = () => {
           <div className="bg-red-500 p-2 rounded">
             <TrendingUp className="h-5 w-5 text-white" />
           </div>
-          <h3 className="text-lg text-slate-300">Weekly Earnings</h3>
+          <h3 className="text-lg text-slate-300">Passive Income</h3>
         </div>
         
         <div className="text-4xl sm:text-5xl font-bold text-primary mb-4">
