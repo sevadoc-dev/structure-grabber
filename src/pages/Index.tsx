@@ -3,10 +3,7 @@ import MobileHero from "@/components/MobileHero";
 import EarningsCard from "@/components/EarningsCard";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import EnergyDeliverSection from "@/components/EnergyDeliverSection";
-import TransformationSection from "@/components/TransformationSection";
-import NewsSection from "@/components/NewsSection";
 import FAQSection from "@/components/FAQSection";
-import FooterMobile from "@/components/FooterMobile";
 import heroEnergy from "@/assets/hero-energy.jpg";
 
 const Index = () => {
@@ -29,10 +26,14 @@ const Index = () => {
         <EarningsCard />
         <HowItWorksSection />
         <EnergyDeliverSection />
-        <TransformationSection />
-        <NewsSection />
         <FAQSection />
-        <FooterMobile />
+        
+        {/* Footer */}
+        <footer className="py-8 px-4 text-center">
+          <p className="text-slate-400 text-sm">
+            © 2025 Ørsted AI. All rights reserved.
+          </p>
+        </footer>
       </div>
     </div>
   );
