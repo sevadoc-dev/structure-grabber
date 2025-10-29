@@ -1,5 +1,6 @@
 import MobileNav from "@/components/MobileNav";
 import MobileHero from "@/components/MobileHero";
+import EarningsCard from "@/components/EarningsCard";
 import SolutionsSection from "@/components/SolutionsSection";
 import EnergyDeliverSection from "@/components/EnergyDeliverSection";
 import TransformationSection from "@/components/TransformationSection";
@@ -11,6 +12,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <MobileNav />
       <MobileHero />
+      <EarningsCard />
       <SolutionsSection />
       <EnergyDeliverSection />
       <TransformationSection />
@@ -21,3 +23,4 @@ const Index = () => {
 };
 
 export default Index;
+
