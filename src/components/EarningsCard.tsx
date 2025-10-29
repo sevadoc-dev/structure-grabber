@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 
 const EarningsCard = () => {
   return (
-    <section className="px-4 py-4">
+    <section className="px-4 py-2">
       <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 p-6 text-center">
         <div className="flex items-center justify-center gap-2 mb-4">
           <div className="bg-red-500 p-2 rounded">
