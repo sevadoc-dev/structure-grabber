@@ -25,7 +25,7 @@ const MobileNav = () => {
     <nav className="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
       <div className="flex items-center justify-between px-4 py-4">
         <div className="text-2xl font-bold text-primary">
-          Ørsted
+          Ørsted AI
         </div>
         
         <Sheet open={open} onOpenChange={setOpen}>

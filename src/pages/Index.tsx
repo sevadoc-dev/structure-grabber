@@ -5,6 +5,7 @@ import HowItWorksSection from "@/components/HowItWorksSection";
 import EnergyDeliverSection from "@/components/EnergyDeliverSection";
 import TransformationSection from "@/components/TransformationSection";
 import NewsSection from "@/components/NewsSection";
+import FAQSection from "@/components/FAQSection";
 import FooterMobile from "@/components/FooterMobile";
 import heroEnergy from "@/assets/hero-energy.jpg";
 
@@ -30,6 +31,7 @@ const Index = () => {
         <EnergyDeliverSection />
         <TransformationSection />
         <NewsSection />
+        <FAQSection />
         <FooterMobile />
       </div>
     </div>
