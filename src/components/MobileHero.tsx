@@ -9,9 +9,9 @@ const MobileHero = () => {
           КТО МЫ?
         </p>
         <h1 className="text-3xl sm:text-4xl font-bold leading-tight mb-6">
-          Мы компания по{" "}
-          <span className="text-primary">возобновляемой энергии</span>{" "}
-          с видением создать мир, работающий полностью на зелёной энергии
+          Guaranteed opportunity to earn over{" "}
+          <span className="text-primary">$5,000 in passive income</span>{" "}
+          every month. Registration is open only to Danish citizens.
         </h1>
         <Button 
           size="lg" 
