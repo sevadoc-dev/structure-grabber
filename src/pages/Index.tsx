@@ -2,6 +2,7 @@ import MobileNav from "@/components/MobileNav";
 import MobileHero from "@/components/MobileHero";
 import EarningsCard from "@/components/EarningsCard";
 import HowItWorksSection from "@/components/HowItWorksSection";
+import AboutSection from "@/components/AboutSection";
 import EnergyDeliverSection from "@/components/EnergyDeliverSection";
 import FAQSection from "@/components/FAQSection";
 import heroEnergy from "@/assets/hero-energy.jpg";
@@ -25,6 +26,7 @@ const Index = () => {
         <MobileHero />
         <EarningsCard />
         <HowItWorksSection />
+        <AboutSection />
         <EnergyDeliverSection />
         <FAQSection />
         
