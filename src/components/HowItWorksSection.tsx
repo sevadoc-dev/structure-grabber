@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Brain, TrendingUp, Wallet, Euro } from "lucide-react";
 
 const features = [
@@ -61,6 +62,18 @@ const HowItWorksSection = () => {
           <p className="text-white text-xl font-bold">
             from €3,000 to €5,000 per month
           </p>
+        </div>
+
+        <div className="mt-6">
+          <Button 
+            className="w-full h-12 text-base font-bold bg-primary hover:bg-primary/90 text-white"
+            onClick={() => {
+              const form = document.querySelector('form');
+              form?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            Quick Registration
+          </Button>
         </div>
       </Card>
     </section>

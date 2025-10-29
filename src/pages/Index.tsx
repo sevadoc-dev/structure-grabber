@@ -6,6 +6,7 @@ import AboutSection from "@/components/AboutSection";
 import ProfitCalculator from "@/components/ProfitCalculator";
 import EnergyDeliverSection from "@/components/EnergyDeliverSection";
 import FAQSection from "@/components/FAQSection";
+import RegistrationForm from "@/components/RegistrationForm";
 import heroEnergy from "@/assets/hero-energy.jpg";
 
 const Index = () => {
@@ -31,6 +32,7 @@ const Index = () => {
         <ProfitCalculator />
         <EnergyDeliverSection />
         <FAQSection />
+        <RegistrationForm />
         
         {/* Footer */}
         <footer className="py-6 px-4 text-center">
