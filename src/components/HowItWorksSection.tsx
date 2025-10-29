@@ -4,23 +4,23 @@ import { Brain, TrendingUp, Wallet, Euro } from "lucide-react";
 const features = [
   {
     icon: Brain,
-    title: "ИИ-анализ",
-    description: "Система прогнозирует спрос, силу ветра и выработку в реальном времени."
+    title: "AI Analysis",
+    description: "The system forecasts demand, wind strength, and output in real time."
   },
   {
     icon: TrendingUp,
-    title: "Торговый алгоритм",
-    description: "Автоматически заключает сделки на энергетических рынках."
+    title: "Trading Algorithm",
+    description: "Automatically executes trades on energy markets."
   },
   {
     icon: Wallet,
-    title: "Портфель инвестиций",
-    description: "Распределяет капитал между ветроэлектростанциями и энергетическими активами."
+    title: "Investment Portfolio",
+    description: "Distributes capital between wind farms and energy assets."
   },
   {
     icon: Euro,
-    title: "Прибыль",
-    description: "Пользователи получают стабильный доход с каждой торговой сессии."
+    title: "Profit",
+    description: "Users receive stable income from each trading session."
   }
 ];
 
@@ -29,7 +29,7 @@ const HowItWorksSection = () => {
     <section className="py-12 px-4">
       <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 p-6">
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-white text-center">
-          Как это работает
+          How it works
         </h2>
         
         <div className="space-y-4 mb-8">
@@ -56,10 +56,10 @@ const HowItWorksSection = () => {
         
         <div className="text-center pt-6 border-t border-slate-700">
           <p className="text-primary text-xl font-bold mb-2">
-            Средняя доходность
+            Average Return
           </p>
           <p className="text-white text-2xl font-bold">
-            от €3,000 до €5,000 в месяц
+            from €3,000 to €5,000 per month
           </p>
         </div>
       </Card>
