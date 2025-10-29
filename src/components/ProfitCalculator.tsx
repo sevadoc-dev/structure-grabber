@@ -23,7 +23,7 @@ const ProfitCalculator = () => {
             <Calculator className="h-5 w-5 text-white" />
           </div>
           <h2 className="text-xl sm:text-2xl font-bold text-white">
-            Profit Calculator
+            Passive Income
           </h2>
         </div>
 
