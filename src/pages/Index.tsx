@@ -8,6 +8,8 @@ import EnergyDeliverSection from "@/components/EnergyDeliverSection";
 import FAQSection from "@/components/FAQSection";
 import RegistrationForm from "@/components/RegistrationForm";
 import LiveActivity from "@/components/LiveActivity";
+import TermsDialog from "@/components/TermsDialog";
+import PrivacyDialog from "@/components/PrivacyDialog";
 import heroEnergy from "@/assets/hero-energy.jpg";
 
 const Index = () => {
@@ -46,9 +48,14 @@ const Index = () => {
             <span>|</span>
             <span>GDPR</span>
           </div>
-          <p className="text-slate-400 text-xs">
+          <p className="text-slate-400 text-xs mb-3">
             © 2025 Ørsted AI. All rights reserved.
           </p>
+          <div className="flex items-center justify-center gap-4 text-xs">
+            <TermsDialog />
+            <span className="text-slate-400">|</span>
+            <PrivacyDialog />
+          </div>
         </footer>
       </div>
       
