@@ -27,13 +27,13 @@ const LiveActivity = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-green-600 to-green-700 text-white py-3 px-4 shadow-lg animate-fade-in">
-      <div className="max-w-2xl mx-auto flex items-center justify-center gap-2 text-sm">
+    <div className="fixed bottom-16 md:bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-green-600 to-green-700 text-white py-3 px-4 shadow-lg animate-fade-in">
+      <div className="max-w-2xl mx-auto flex items-center justify-center gap-2 text-sm flex-wrap">
         <TrendingUp className="w-4 h-4 animate-pulse" />
         <span className="font-semibold">{activity.userId}</span>
         <span>earned</span>
         <span className="font-bold text-green-200">€{activity.amount}</span>
-        <span>from operation</span>
+        <span className="whitespace-nowrap">from operation</span>
         <span className="font-semibold">{activity.operationId}</span>
       </div>
     </div>
