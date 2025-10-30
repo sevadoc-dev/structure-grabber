@@ -34,8 +34,17 @@ const FooterMobile = () => {
           ))}
         </div>
         
-        <div className="mt-12 pt-8 border-t border-background/20 text-sm text-background/60">
-          <p>© 2025 Ørsted. Все права защищены.</p>
+        <div className="mt-12 pt-8 border-t border-background/20">
+          <div className="flex items-center justify-center gap-4 mb-6 text-sm text-background/60 flex-wrap">
+            <span>FCA</span>
+            <span>|</span>
+            <span>AFM</span>
+            <span>|</span>
+            <span>MiFID II</span>
+            <span>|</span>
+            <span>GDPR</span>
+          </div>
+          <p className="text-sm text-background/60">© 2025 Ørsted. Все права защищены.</p>
         </div>
       </div>
     </footer>

@@ -7,6 +7,7 @@ import ProfitCalculator from "@/components/ProfitCalculator";
 import EnergyDeliverSection from "@/components/EnergyDeliverSection";
 import FAQSection from "@/components/FAQSection";
 import RegistrationForm from "@/components/RegistrationForm";
+import LiveActivity from "@/components/LiveActivity";
 import heroEnergy from "@/assets/hero-energy.jpg";
 
 const Index = () => {
@@ -35,12 +36,15 @@ const Index = () => {
         <RegistrationForm />
         
         {/* Footer */}
-        <footer className="py-6 px-4 text-center">
+        <footer className="py-6 px-4 text-center mb-16">
           <p className="text-slate-400 text-xs">
             © 2025 Ørsted AI. All rights reserved.
           </p>
         </footer>
       </div>
+      
+      {/* Live Activity - Sticky Bottom */}
+      <LiveActivity />
     </div>
   );
 };
