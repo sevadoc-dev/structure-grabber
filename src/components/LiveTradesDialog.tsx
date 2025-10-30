@@ -18,7 +18,7 @@ const LiveTradesDialog = () => {
   const generateMonthData = () => {
     const days = [];
     const initialValue = 300;
-    const finalValue = 900; // +200% = 300 * 3
+    const finalValue = 1800; // +500% = 300 * 6
     
     for (let i = 1; i <= 30; i++) {
       const value = initialValue + ((finalValue - initialValue) / 29) * (i - 1);
@@ -58,42 +58,42 @@ const LiveTradesDialog = () => {
           </Button>
         </section>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800 border-slate-700">
+      <DialogContent className="sm:max-w-[600px] w-[95vw] max-h-[85vh] overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800 border-slate-700 p-4 sm:p-6">
         <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground z-50">
           <X className="h-5 w-5 text-slate-400 hover:text-white" />
           <span className="sr-only">Close</span>
         </DialogClose>
-        <DialogHeader>
-          <DialogTitle className="text-2xl text-center text-white mb-6">
+        <DialogHeader className="pr-8">
+          <DialogTitle className="text-xl sm:text-2xl text-center text-white mb-4 sm:mb-6">
             If you had invested €300 a week ago
           </DialogTitle>
         </DialogHeader>
         
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {/* Current Value Display */}
-          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6 text-center">
-            <div className="text-sm text-slate-400 mb-2">Current Value</div>
-            <div className="text-4xl font-bold text-green-400 mb-2">
+          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 sm:p-6 text-center">
+            <div className="text-xs sm:text-sm text-slate-400 mb-2">Current Value</div>
+            <div className="text-2xl sm:text-4xl font-bold text-green-400 mb-2">
               €{currentValue.toFixed(2)}
             </div>
-            <div className="text-lg text-green-300">
+            <div className="text-base sm:text-lg text-green-300">
               +€{profit.toFixed(2)} ({profitPercentage}%)
             </div>
           </div>
 
           {/* Chart */}
-          <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-4">
-            <ResponsiveContainer width="100%" height={300}>
+          <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-2 sm:p-4">
+            <ResponsiveContainer width="100%" height={250}>
               <LineChart data={visibleData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
                 <XAxis 
                   dataKey="day" 
                   stroke="#94a3b8"
-                  tick={{ fill: '#94a3b8' }}
+                  tick={{ fill: '#94a3b8', fontSize: 12 }}
                 />
                 <YAxis 
                   stroke="#94a3b8"
-                  tick={{ fill: '#94a3b8' }}
+                  tick={{ fill: '#94a3b8', fontSize: 12 }}
                   domain={[300, 'auto']}
                 />
                 <Tooltip 
@@ -118,9 +118,9 @@ const LiveTradesDialog = () => {
           </div>
 
           {/* Info */}
-          <div className="text-center text-sm text-slate-400">
+          <div className="text-center text-xs sm:text-sm text-slate-400">
             <p>Live simulation • Day {currentDay} of 30</p>
-            <p className="mt-2">This is a demo showing potential monthly returns</p>
+            <p className="mt-1 sm:mt-2">This is a demo showing potential monthly returns</p>
           </div>
         </div>
       </DialogContent>
