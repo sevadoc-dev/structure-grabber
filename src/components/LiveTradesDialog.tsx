@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { TrendingUp } from "lucide-react";
+import { TrendingUp, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -7,25 +7,35 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 const LiveTradesDialog = () => {
   const [currentDay, setCurrentDay] = useState(1);
-  const [data, setData] = useState([
-    { day: "Mon", value: 300 },
-    { day: "Tue", value: 390 },
-    { day: "Wed", value: 480 },
-    { day: "Thu", value: 570 },
-    { day: "Fri", value: 660 },
-    { day: "Sat", value: 780 },
-    { day: "Sun", value: 900 },
-  ]);
+  
+  // Generate 30 days of data with gradual growth to +200%
+  const generateMonthData = () => {
+    const days = [];
+    const initialValue = 300;
+    const finalValue = 900; // +200% = 300 * 3
+    
+    for (let i = 1; i <= 30; i++) {
+      const value = initialValue + ((finalValue - initialValue) / 29) * (i - 1);
+      days.push({
+        day: i,
+        value: parseFloat(value.toFixed(2))
+      });
+    }
+    return days;
+  };
+  
+  const [data] = useState(generateMonthData());
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentDay((prev) => {
-        if (prev >= 7) return 1;
+        if (prev >= 30) return 1;
         return prev + 1;
       });
     }, 1000);
@@ -49,6 +59,10 @@ const LiveTradesDialog = () => {
         </section>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800 border-slate-700">
+        <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground z-50">
+          <X className="h-5 w-5 text-slate-400 hover:text-white" />
+          <span className="sr-only">Close</span>
+        </DialogClose>
         <DialogHeader>
           <DialogTitle className="text-2xl text-center text-white mb-6">
             If you had invested €300 a week ago
@@ -105,8 +119,8 @@ const LiveTradesDialog = () => {
 
           {/* Info */}
           <div className="text-center text-sm text-slate-400">
-            <p>Live simulation • Day {currentDay} of 7</p>
-            <p className="mt-2">This is a demo showing potential weekly returns</p>
+            <p>Live simulation • Day {currentDay} of 30</p>
+            <p className="mt-2">This is a demo showing potential monthly returns</p>
           </div>
         </div>
       </DialogContent>
