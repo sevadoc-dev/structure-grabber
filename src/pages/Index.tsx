@@ -37,6 +37,15 @@ const Index = () => {
         
         {/* Footer */}
         <footer className="py-6 px-4 text-center mb-16">
+          <div className="flex items-center justify-center gap-3 mb-4 text-sm text-slate-400 flex-wrap">
+            <span>FCA</span>
+            <span>|</span>
+            <span>AFM</span>
+            <span>|</span>
+            <span>MiFID II</span>
+            <span>|</span>
+            <span>GDPR</span>
+          </div>
           <p className="text-slate-400 text-xs">
             © 2025 Ørsted AI. All rights reserved.
           </p>
