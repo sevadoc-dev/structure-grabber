@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +11,17 @@ const RegistrationForm = () => {
     phone: "",
     countryCode: "+44"
   });
+  
+  const [placesLeft, setPlacesLeft] = useState(13);
+
+  useEffect(() => {
+    if (placesLeft > 2) {
+      const timer = setTimeout(() => {
+        setPlacesLeft(prev => prev - 1);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [placesLeft]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,6 +39,15 @@ const RegistrationForm = () => {
   return (
     <section className="py-6 px-4">
       <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 p-6">
+        <div className="mb-6 text-center">
+          <h2 className="text-white text-lg sm:text-xl font-semibold mb-2">
+            Places available on the platform this month:
+          </h2>
+          <div className={`text-4xl sm:text-5xl font-bold text-primary ${placesLeft === 2 ? 'animate-pulse' : ''}`}>
+            {placesLeft}
+          </div>
+        </div>
+        
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             type="text"
