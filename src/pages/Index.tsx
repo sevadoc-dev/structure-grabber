@@ -1,6 +1,6 @@
 import MobileNav from "@/components/MobileNav";
 import MobileHero from "@/components/MobileHero";
-import EarningsCard from "@/components/EarningsCard";
+import LiveTradesDialog from "@/components/LiveTradesDialog";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import AboutSection from "@/components/AboutSection";
 import ProfitCalculator from "@/components/ProfitCalculator";
@@ -29,7 +29,7 @@ const Index = () => {
       <div className="relative z-10">
         <MobileNav />
         <MobileHero />
-        <EarningsCard />
+        <LiveTradesDialog />
         <HowItWorksSection />
         <AboutSection />
         <ProfitCalculator />
