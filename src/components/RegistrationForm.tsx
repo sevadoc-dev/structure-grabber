@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -13,16 +13,35 @@ const RegistrationForm = () => {
   });
   
   const [placesLeft, setPlacesLeft] = useState(50);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (placesLeft > 2) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (isVisible && placesLeft > 2) {
       const timer = setTimeout(() => {
         const decrease = Math.floor(Math.random() * 3) + 3; // 3-5
         setPlacesLeft(prev => Math.max(2, prev - decrease));
-      }, 800);
+      }, 1400);
       return () => clearTimeout(timer);
     }
-  }, [placesLeft]);
+  }, [placesLeft, isVisible]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,7 +57,7 @@ const RegistrationForm = () => {
   ];
 
   return (
-    <section id="registration-form" className="py-6 px-4">
+    <section ref={sectionRef} id="registration-form" className="py-6 px-4">
       <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 p-6">
         <div className="mb-6 text-center">
           <h2 className="text-white text-lg sm:text-xl font-semibold mb-2">
