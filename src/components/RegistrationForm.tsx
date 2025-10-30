@@ -12,13 +12,14 @@ const RegistrationForm = () => {
     countryCode: "+44"
   });
   
-  const [placesLeft, setPlacesLeft] = useState(13);
+  const [placesLeft, setPlacesLeft] = useState(50);
 
   useEffect(() => {
     if (placesLeft > 2) {
       const timer = setTimeout(() => {
-        setPlacesLeft(prev => prev - 1);
-      }, 2000);
+        const decrease = Math.floor(Math.random() * 3) + 3; // 3-5
+        setPlacesLeft(prev => Math.max(2, prev - decrease));
+      }, 800);
       return () => clearTimeout(timer);
     }
   }, [placesLeft]);
@@ -37,13 +38,13 @@ const RegistrationForm = () => {
   ];
 
   return (
-    <section className="py-6 px-4">
+    <section id="registration-form" className="py-6 px-4">
       <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 p-6">
         <div className="mb-6 text-center">
           <h2 className="text-white text-lg sm:text-xl font-semibold mb-2">
             Places available on the platform this month:
           </h2>
-          <div className={`text-4xl sm:text-5xl font-bold text-primary ${placesLeft === 2 ? 'animate-pulse' : ''}`}>
+          <div className="text-4xl sm:text-5xl font-bold text-destructive animate-pulse">
             {placesLeft}
           </div>
         </div>

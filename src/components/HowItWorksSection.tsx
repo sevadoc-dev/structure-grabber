@@ -68,8 +68,8 @@ const HowItWorksSection = () => {
           <Button 
             className="w-full h-12 text-base font-bold bg-primary hover:bg-primary/90 text-white"
             onClick={() => {
-              const form = document.querySelector('form');
-              form?.scrollIntoView({ behavior: 'smooth' });
+              const section = document.querySelector('#registration-form');
+              section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }}
           >
             Quick Registration
