@@ -9,25 +9,84 @@ import {
   DialogTrigger,
   DialogClose,
 } from "@/components/ui/dialog";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Bar } from "recharts";
 
 const LiveTradesDialog = () => {
   const [currentDay, setCurrentDay] = useState(1);
   
-  // Generate 30 days of data with gradual growth to +200%
+  // Generate 30 days of candlestick data with gradual growth
   const generateMonthData = () => {
     const days = [];
     const initialValue = 300;
-    const finalValue = 1800; // +500% = 300 * 6
+    const finalValue = 1800;
     
     for (let i = 1; i <= 30; i++) {
-      const value = initialValue + ((finalValue - initialValue) / 29) * (i - 1);
+      const baseValue = initialValue + ((finalValue - initialValue) / 29) * (i - 1);
+      const volatility = baseValue * 0.03; // 3% daily volatility
+      
+      const open = baseValue + (Math.random() - 0.5) * volatility;
+      const close = baseValue + (Math.random() - 0.5) * volatility;
+      const high = Math.max(open, close) + Math.random() * volatility * 0.5;
+      const low = Math.min(open, close) - Math.random() * volatility * 0.5;
+      
       days.push({
         day: i,
-        value: parseFloat(value.toFixed(2))
+        open: parseFloat(open.toFixed(2)),
+        high: parseFloat(high.toFixed(2)),
+        low: parseFloat(low.toFixed(2)),
+        close: parseFloat(close.toFixed(2)),
+        value: parseFloat(close.toFixed(2))
       });
     }
     return days;
+  };
+  
+  // Custom candlestick shape
+  const Candlestick = (props: any) => {
+    const { x, y, width, height, payload } = props;
+    const { open, close, high, low } = payload;
+    
+    const isGreen = close >= open;
+    const color = isGreen ? "#10b981" : "#ef4444";
+    const candleWidth = Math.max(width * 0.6, 3);
+    const candleX = x + (width - candleWidth) / 2;
+    
+    const topPrice = Math.max(open, close);
+    const bottomPrice = Math.min(open, close);
+    const range = high - low;
+    
+    if (range === 0) return null;
+    
+    const wickX = x + width / 2;
+    const highY = y;
+    const lowY = y + height;
+    const topY = y + ((high - topPrice) / range) * height;
+    const bottomY = y + ((high - bottomPrice) / range) * height;
+    const candleHeight = Math.abs(bottomY - topY);
+    
+    return (
+      <g>
+        {/* Wick */}
+        <line
+          x1={wickX}
+          y1={highY}
+          x2={wickX}
+          y2={lowY}
+          stroke={color}
+          strokeWidth={1}
+        />
+        {/* Candle body */}
+        <rect
+          x={candleX}
+          y={topY}
+          width={candleWidth}
+          height={Math.max(candleHeight, 1)}
+          fill={color}
+          stroke={color}
+          strokeWidth={1}
+        />
+      </g>
+    );
   };
   
   const [data] = useState(generateMonthData());
@@ -84,7 +143,7 @@ const LiveTradesDialog = () => {
           {/* Chart */}
           <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-2 sm:p-4">
             <ResponsiveContainer width="100%" height={250}>
-              <LineChart data={visibleData}>
+              <ComposedChart data={visibleData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
                 <XAxis 
                   dataKey="day" 
@@ -94,7 +153,7 @@ const LiveTradesDialog = () => {
                 <YAxis 
                   stroke="#94a3b8"
                   tick={{ fill: '#94a3b8', fontSize: 12 }}
-                  domain={[300, 'auto']}
+                  domain={['auto', 'auto']}
                 />
                 <Tooltip 
                   contentStyle={{ 
@@ -103,17 +162,38 @@ const LiveTradesDialog = () => {
                     borderRadius: '0.5rem',
                     color: '#fff'
                   }}
-                  formatter={(value: number) => [`€${value.toFixed(2)}`, 'Value']}
+                  formatter={(value: number, name: string) => {
+                    const labels: Record<string, string> = {
+                      open: 'Open',
+                      high: 'High',
+                      low: 'Low',
+                      close: 'Close'
+                    };
+                    return [`€${value.toFixed(2)}`, labels[name] || name];
+                  }}
+                  content={({ payload }) => {
+                    if (!payload || payload.length === 0) return null;
+                    const data = payload[0].payload;
+                    return (
+                      <div className="bg-slate-900 border border-slate-700 rounded-lg p-3">
+                        <p className="text-slate-400 text-xs mb-1">Day {data.day}</p>
+                        <div className="space-y-1 text-sm">
+                          <p className="text-green-400">Open: €{data.open?.toFixed(2)}</p>
+                          <p className="text-green-300">High: €{data.high?.toFixed(2)}</p>
+                          <p className="text-red-300">Low: €{data.low?.toFixed(2)}</p>
+                          <p className={data.close >= data.open ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
+                            Close: €{data.close?.toFixed(2)}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  }}
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="value" 
-                  stroke="#10b981" 
-                  strokeWidth={3}
-                  dot={{ fill: '#10b981', r: 4 }}
-                  activeDot={{ r: 6 }}
+                <Bar 
+                  dataKey="high" 
+                  shape={<Candlestick />}
                 />
-              </LineChart>
+              </ComposedChart>
             </ResponsiveContainer>
           </div>
 
