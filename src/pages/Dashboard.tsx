@@ -95,9 +95,9 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900">
+    <div className="min-h-screen bg-slate-900">
       {/* Header */}
-      <header className="border-b border-blue-700 bg-blue-900/50 backdrop-blur-sm">
+      <header className="border-b border-slate-700 bg-slate-800/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-6 flex items-center justify-between">
           <div className="text-3xl font-bold text-primary">
             Ørsted AI
