@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { History, ArrowDownToLine, ArrowUpFromLine } from "lucide-react";
+import { History, ArrowDownToLine, ArrowUpFromLine, LogOut, Settings } from "lucide-react";
 import { ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Bar } from "recharts";
 
 const Dashboard = () => {
@@ -98,9 +98,25 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900">
       {/* Header */}
       <header className="border-b border-blue-700 bg-blue-900/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-4 py-6 flex items-center justify-between">
           <div className="text-3xl font-bold text-primary">
             Ørsted AI
+          </div>
+          <div className="flex items-center gap-3">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="text-white hover:bg-blue-800/50"
+            >
+              <Settings className="h-6 w-6" />
+            </Button>
+            <Button 
+              variant="destructive"
+              className="flex items-center gap-2 bg-red-600 hover:bg-red-700"
+            >
+              <LogOut className="h-5 w-5" />
+              Logout
+            </Button>
           </div>
         </div>
       </header>
