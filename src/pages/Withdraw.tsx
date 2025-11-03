@@ -27,7 +27,7 @@ const Withdraw = () => {
             <Button 
               variant="ghost" 
               size="icon"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/dashboard")}
               className="text-white hover:bg-slate-700/50"
             >
               <ArrowLeft className="h-6 w-6" />

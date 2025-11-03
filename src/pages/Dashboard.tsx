@@ -78,7 +78,7 @@ const Dashboard = () => {
               Deposit
             </Button>
             <Button 
-              onClick={() => navigate("/withdraw")}
+              onClick={() => navigate("/")}
               className="flex items-center gap-2 px-8 py-6 text-lg bg-primary hover:bg-primary-hover"
             >
               <ArrowUpFromLine className="h-5 w-5" />
