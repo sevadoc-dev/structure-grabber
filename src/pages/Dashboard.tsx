@@ -203,6 +203,16 @@ const Dashboard = () => {
               </ResponsiveContainer>
             </div>
           </Card>
+
+          {/* Turn off AI Trading Button */}
+          <div className="flex justify-center mt-6">
+            <Button 
+              variant="destructive"
+              className="px-8 py-6 text-lg bg-red-600 hover:bg-red-700"
+            >
+              Turn off AI Trading
+            </Button>
+          </div>
         </div>
       </main>
     </div>
