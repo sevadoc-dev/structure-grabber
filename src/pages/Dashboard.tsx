@@ -5,6 +5,8 @@ import { History, ArrowDownToLine, ArrowUpFromLine, LogOut, Settings } from "luc
 import { ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Bar } from "recharts";
 
 const Dashboard = () => {
+  const [isAITradingActive, setIsAITradingActive] = useState(true);
+  
   // Generate static candlestick data with green candles and profit labels
   const generateStaticData = () => {
     const days = [];
@@ -207,10 +209,14 @@ const Dashboard = () => {
           {/* Turn off AI Trading Button */}
           <div className="flex justify-center mt-6">
             <Button 
-              variant="destructive"
-              className="px-8 py-6 text-lg bg-red-600 hover:bg-red-700"
+              onClick={() => setIsAITradingActive(!isAITradingActive)}
+              className={`px-8 py-6 text-lg ${
+                isAITradingActive 
+                  ? 'bg-red-600 hover:bg-red-700' 
+                  : 'bg-green-600 hover:bg-green-700'
+              }`}
             >
-              Turn off AI Trading
+              {isAITradingActive ? 'Turn off AI Trading' : 'Turn on AI Trading'}
             </Button>
           </div>
         </div>
