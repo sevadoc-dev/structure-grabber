@@ -9,8 +9,13 @@ const Dashboard = () => {
   const generateStaticData = () => {
     const days = [];
     const baseValue = 1000;
+    const startDate = new Date(2024, 9, 15); // October 15, 2024 (month is 0-indexed)
     
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 0; i < 16; i++) {
+      const currentDate = new Date(startDate);
+      currentDate.setDate(startDate.getDate() + i);
+      const dateStr = `${currentDate.getDate()} Oct`;
+      
       const open = baseValue + i * 30;
       const close = open + Math.random() * 50 + 20; // Always positive (green candles)
       const high = close + Math.random() * 20 + 10;
@@ -18,7 +23,7 @@ const Dashboard = () => {
       const profit = Math.floor(Math.random() * 400) + 100; // +100 to +500
       
       days.push({
-        day: i,
+        day: dateStr,
         open: parseFloat(open.toFixed(2)),
         high: parseFloat(high.toFixed(2)),
         low: parseFloat(low.toFixed(2)),
@@ -90,9 +95,9 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900">
       {/* Header */}
-      <header className="border-b border-border bg-card">
+      <header className="border-b border-blue-700 bg-blue-900/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-6">
           <div className="text-3xl font-bold text-primary">
             Ørsted AI
@@ -127,20 +132,23 @@ const Dashboard = () => {
           </div>
 
           {/* Chart Card */}
-          <Card className="p-6">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Trading Performance</h2>
+          <Card className="p-6 bg-slate-900/80 border-blue-700">
+            <h2 className="text-2xl font-bold text-white mb-6">Trading Performance</h2>
             <div className="bg-card rounded-lg">
               <ResponsiveContainer width="100%" height={400}>
                 <ComposedChart data={data} margin={{ top: 40, right: 20, bottom: 20, left: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                   <XAxis 
                     dataKey="day" 
-                    stroke="hsl(var(--muted-foreground))"
-                    tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 12 }}
+                    stroke="#94a3b8"
+                    tick={{ fill: '#94a3b8', fontSize: 11 }}
+                    angle={-45}
+                    textAnchor="end"
+                    height={80}
                   />
                   <YAxis 
-                    stroke="hsl(var(--muted-foreground))"
-                    tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 12 }}
+                    stroke="#94a3b8"
+                    tick={{ fill: '#94a3b8', fontSize: 12 }}
                     domain={['auto', 'auto']}
                   />
                   <Tooltip 
