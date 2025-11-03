@@ -9,13 +9,26 @@ import { useNavigate } from "react-router-dom";
 const Withdraw = () => {
   const navigate = useNavigate();
   const [amount, setAmount] = useState("");
-  const [walletAddress, setWalletAddress] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
 
-  const availableBalance = 2847.50;
+  const availableBalance = 5821.37;
+
+  const formatCardNumber = (value: string) => {
+    const cleaned = value.replace(/\s/g, '');
+    const chunks = cleaned.match(/.{1,4}/g);
+    return chunks ? chunks.join(' ') : cleaned;
+  };
+
+  const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\s/g, '');
+    if (value.length <= 16 && /^\d*$/.test(value)) {
+      setCardNumber(formatCardNumber(value));
+    }
+  };
 
   const handleWithdraw = () => {
     // Handle withdrawal logic here
-    console.log("Withdrawing:", amount, "to", walletAddress);
+    console.log("Withdrawing:", amount, "to", cardNumber);
   };
 
   return (
@@ -44,7 +57,7 @@ const Withdraw = () => {
         <div className="max-w-2xl mx-auto space-y-6">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-white mb-2">Withdraw Funds</h1>
-            <p className="text-slate-400">Transfer your earnings to your wallet</p>
+            <p className="text-slate-400">Transfer your earnings to your card</p>
           </div>
 
           {/* Balance Card */}
@@ -73,53 +86,20 @@ const Withdraw = () => {
                   onChange={(e) => setAmount(e.target.value)}
                   className="bg-slate-800 border-slate-700 text-white text-lg h-14"
                 />
-                <div className="flex gap-2 mt-3">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setAmount((availableBalance * 0.25).toFixed(2))}
-                    className="bg-slate-800 border-slate-600 text-white hover:bg-slate-700"
-                  >
-                    25%
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setAmount((availableBalance * 0.5).toFixed(2))}
-                    className="bg-slate-800 border-slate-600 text-white hover:bg-slate-700"
-                  >
-                    50%
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setAmount((availableBalance * 0.75).toFixed(2))}
-                    className="bg-slate-800 border-slate-600 text-white hover:bg-slate-700"
-                  >
-                    75%
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setAmount(availableBalance.toFixed(2))}
-                    className="bg-slate-800 border-slate-600 text-white hover:bg-slate-700"
-                  >
-                    MAX
-                  </Button>
-                </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="wallet" className="text-white text-lg">
-                  Wallet Address
+                <Label htmlFor="card" className="text-white text-lg">
+                  Card Number
                 </Label>
                 <Input
-                  id="wallet"
+                  id="card"
                   type="text"
-                  placeholder="Enter your wallet address"
-                  value={walletAddress}
-                  onChange={(e) => setWalletAddress(e.target.value)}
-                  className="bg-slate-800 border-slate-700 text-white h-14"
+                  placeholder="0000 0000 0000 0000"
+                  value={cardNumber}
+                  onChange={handleCardNumberChange}
+                  className="bg-slate-800 border-slate-700 text-white h-14 text-lg tracking-wider"
+                  maxLength={19}
                 />
               </div>
 
@@ -146,7 +126,7 @@ const Withdraw = () => {
 
               <Button
                 onClick={handleWithdraw}
-                disabled={!amount || !walletAddress || parseFloat(amount) > availableBalance}
+                disabled={!amount || !cardNumber || parseFloat(amount) > availableBalance}
                 className="w-full bg-primary hover:bg-primary-hover text-white py-6 text-lg font-semibold"
               >
                 Confirm Withdrawal
