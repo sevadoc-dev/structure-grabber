@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, Wallet } from "lucide-react";
+import { ArrowLeft, LogOut, Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Withdraw = () => {
@@ -49,6 +49,22 @@ const Withdraw = () => {
               Ørsted AI
             </div>
           </div>
+          <div className="flex items-center gap-3">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="text-white hover:bg-blue-800/50"
+            >
+              <Settings className="h-6 w-6" />
+            </Button>
+            <Button 
+              variant="destructive"
+              className="flex items-center gap-2 bg-red-600 hover:bg-red-700"
+            >
+              <LogOut className="h-5 w-5" />
+              Logout
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -67,7 +83,6 @@ const Withdraw = () => {
                 <p className="text-slate-400 text-sm mb-1">Available Balance</p>
                 <p className="text-3xl font-bold text-green-500">€{availableBalance.toFixed(2)}</p>
               </div>
-              <Wallet className="h-12 w-12 text-primary" />
             </div>
           </Card>
 
