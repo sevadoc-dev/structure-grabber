@@ -151,7 +151,21 @@ const Dashboard = () => {
 
           {/* Chart Card */}
           <Card className="p-6 bg-slate-900/80 border-blue-700">
-            <h2 className="text-2xl font-bold text-white mb-6">Trading Performance</h2>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-white">Trading Performance</h2>
+              <div className={`flex items-center gap-2 px-4 py-2 rounded-full ${
+                isAITradingActive ? 'bg-green-500/20' : 'bg-red-500/20'
+              }`}>
+                <div className={`w-2 h-2 rounded-full ${
+                  isAITradingActive ? 'bg-green-500' : 'bg-red-500'
+                }`}></div>
+                <span className={`text-sm font-semibold ${
+                  isAITradingActive ? 'text-green-500' : 'text-red-500'
+                }`}>
+                  {isAITradingActive ? 'AI Trading Active' : 'AI Trading Inactive'}
+                </span>
+              </div>
+            </div>
             <div className="bg-card rounded-lg">
               <ResponsiveContainer width="100%" height={400}>
                 <ComposedChart data={data} margin={{ top: 40, right: 20, bottom: 20, left: 20 }}>
