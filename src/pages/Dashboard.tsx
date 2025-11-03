@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { History, ArrowDownToLine, ArrowUpFromLine, LogOut, Settings } from "lucide-react";
 import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Bar, Cell, LabelList } from "recharts";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [isAITradingActive, setIsAITradingActive] = useState(true);
   
   // Generate static profit data
@@ -76,6 +78,7 @@ const Dashboard = () => {
               Deposit
             </Button>
             <Button 
+              onClick={() => navigate("/withdraw")}
               className="flex items-center gap-2 px-8 py-6 text-lg bg-primary hover:bg-primary-hover"
             >
               <ArrowUpFromLine className="h-5 w-5" />
