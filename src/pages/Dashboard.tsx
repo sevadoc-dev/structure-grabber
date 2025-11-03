@@ -2,34 +2,25 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { History, ArrowDownToLine, ArrowUpFromLine, LogOut, Settings } from "lucide-react";
-import { ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Bar } from "recharts";
+import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Bar, Cell, LabelList } from "recharts";
 
 const Dashboard = () => {
   const [isAITradingActive, setIsAITradingActive] = useState(true);
   
-  // Generate static candlestick data with green candles and profit labels
+  // Generate static profit data
   const generateStaticData = () => {
     const days = [];
-    const baseValue = 1000;
-    const startDate = new Date(2024, 9, 15); // October 15, 2024 (month is 0-indexed)
+    const startDate = new Date(2024, 9, 15); // October 15, 2024
     
     for (let i = 0; i < 16; i++) {
       const currentDate = new Date(startDate);
       currentDate.setDate(startDate.getDate() + i);
       const dateStr = `${currentDate.getDate()} Oct`;
       
-      const open = baseValue + i * 30;
-      const close = open + Math.random() * 50 + 20; // Always positive (green candles)
-      const high = close + Math.random() * 20 + 10;
-      const low = open - Math.random() * 15;
       const profit = Math.floor(Math.random() * 400) + 100; // +100 to +500
       
       days.push({
         day: dateStr,
-        open: parseFloat(open.toFixed(2)),
-        high: parseFloat(high.toFixed(2)),
-        low: parseFloat(low.toFixed(2)),
-        close: parseFloat(close.toFixed(2)),
         profit: profit
       });
     }
@@ -38,63 +29,6 @@ const Dashboard = () => {
 
   const [data] = useState(generateStaticData());
 
-  // Custom candlestick shape
-  const Candlestick = (props: any) => {
-    const { x, y, width, height, payload } = props;
-    const { open, close, high, low } = payload;
-    
-    const color = "#10b981"; // Green color
-    const candleWidth = Math.max(width * 0.6, 3);
-    const candleX = x + (width - candleWidth) / 2;
-    
-    const topPrice = Math.max(open, close);
-    const bottomPrice = Math.min(open, close);
-    const range = high - low;
-    
-    if (range === 0) return null;
-    
-    const wickX = x + width / 2;
-    const highY = y;
-    const lowY = y + height;
-    const topY = y + ((high - topPrice) / range) * height;
-    const bottomY = y + ((high - bottomPrice) / range) * height;
-    const candleHeight = Math.abs(bottomY - topY);
-    
-    return (
-      <g>
-        {/* Wick */}
-        <line
-          x1={wickX}
-          y1={highY}
-          x2={wickX}
-          y2={lowY}
-          stroke={color}
-          strokeWidth={1}
-        />
-        {/* Candle body */}
-        <rect
-          x={candleX}
-          y={topY}
-          width={candleWidth}
-          height={Math.max(candleHeight, 1)}
-          fill={color}
-          stroke={color}
-          strokeWidth={1}
-        />
-        {/* Profit label above candle */}
-        <text
-          x={x + width / 2}
-          y={y - 5}
-          textAnchor="middle"
-          fill="#10b981"
-          fontSize="10"
-          fontWeight="600"
-        >
-          +€{payload.profit}
-        </text>
-      </g>
-    );
-  };
 
   return (
     <div className="min-h-screen bg-slate-900">
@@ -168,7 +102,7 @@ const Dashboard = () => {
             </div>
             <div className="bg-card rounded-lg">
               <ResponsiveContainer width="100%" height={400}>
-                <ComposedChart data={data} margin={{ top: 40, right: 20, bottom: 20, left: 20 }}>
+                <BarChart data={data} margin={{ top: 40, right: 20, bottom: 20, left: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                   <XAxis 
                     dataKey="day" 
@@ -181,7 +115,7 @@ const Dashboard = () => {
                   <YAxis 
                     stroke="#94a3b8"
                     tick={{ fill: '#94a3b8', fontSize: 12 }}
-                    domain={['auto', 'auto']}
+                    domain={[0, 550]}
                   />
                   <Tooltip 
                     contentStyle={{ 
@@ -195,27 +129,26 @@ const Dashboard = () => {
                       const data = payload[0].payload;
                       return (
                         <div className="bg-card border border-border rounded-lg p-3">
-                          <p className="text-muted-foreground text-xs mb-1">Day {data.day}</p>
-                          <div className="space-y-1 text-sm">
-                            <p className="text-green-500">Open: €{data.open?.toFixed(2)}</p>
-                            <p className="text-green-400">High: €{data.high?.toFixed(2)}</p>
-                            <p className="text-green-600">Low: €{data.low?.toFixed(2)}</p>
-                            <p className="text-green-500 font-semibold">
-                              Close: €{data.close?.toFixed(2)}
-                            </p>
-                            <p className="text-green-500 font-bold border-t border-border pt-1 mt-2">
-                              Profit: +€{data.profit}
-                            </p>
-                          </div>
+                          <p className="text-muted-foreground text-xs mb-1">{data.day}</p>
+                          <p className="text-green-500 font-bold text-lg">
+                            Profit: +€{data.profit}
+                          </p>
                         </div>
                       );
                     }}
                   />
-                  <Bar 
-                    dataKey="high" 
-                    shape={<Candlestick />}
-                  />
-                </ComposedChart>
+                  <Bar dataKey="profit" radius={[8, 8, 0, 0]}>
+                    {data.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill="#10b981" />
+                    ))}
+                    <LabelList 
+                      dataKey="profit" 
+                      position="top" 
+                      formatter={(value: number) => `+€${value}`}
+                      style={{ fill: '#10b981', fontSize: '11px', fontWeight: '600' }}
+                    />
+                  </Bar>
+                </BarChart>
               </ResponsiveContainer>
             </div>
           </Card>
